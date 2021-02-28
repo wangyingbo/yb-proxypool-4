@@ -271,8 +271,8 @@ download_pc(){
     mv proxypool-linux-amd64-v0.6.0 proxypool
     chmod 755 proxypool
 
-    wget https://raw.githubusercontent.com/lanhebe/pc/master/config.yaml
-    wget https://raw.githubusercontent.com/lanhebe/pc/master/source.yaml
+    wget https://raw.githubusercontent.com/lanhebe/proxypool/master/config.yaml
+    wget https://raw.githubusercontent.com/lanhebe/proxypool/master/source.yaml
    
     cat > ./config.yaml <<-EOF
     domain: $your_domain

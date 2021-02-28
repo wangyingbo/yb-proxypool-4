@@ -31,10 +31,10 @@
 ## 安装
 
 以下五选一。
-### 使用一键脚本安装到VPS
-
-
-
+### 使用一键脚本安装到VPS(Littleyu增加一键脚本，目前仅支持CentOS 7操作系统)
+```sh
+$ wget https://raw.githubusercontent.com/lanhebe/proxypool/master/onekey_install.sh && chmod +x onekey_install.sh && ./onekey_install.sh
+```
 
 ### 使用Heroku
 

@@ -442,7 +442,7 @@ function start_menu(){
     green " ======================================================"
     green " 描述：xray + 免费节点爬虫一键安装脚本"
     green " 系统：仅支持centos7"
-    green " 作者：Littleyu+部分代码源于网络  www.yugogo.xyz"
+    green " 作者：Littleyu+部分代码源于atrandys  www.yugogo.xyz"
     green " YouTuBe频道：Littleyu科学上网"
     green " ======================================================"
     echo

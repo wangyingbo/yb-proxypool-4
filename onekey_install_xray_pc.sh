@@ -406,7 +406,7 @@ EOF
 
 check_domain(){
     $systemPackage install -y wget curl unzip
-    blue "Eenter your domain:"
+    blue "请键入解析好的域名:"
     read your_domain
     real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
     local_addr=`curl ipv4.icanhazip.com`

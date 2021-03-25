@@ -223,35 +223,16 @@ EOF
     fi
 cat > /etc/nginx/conf.d/default.conf<<-EOF
 server {
-    listen       127.0.0.1:37212 http2;
-    server_name  $your_domain;
-    root /usr/share/nginx/html;
-    index index.php index.html index.htm;
-    location ~ \.php$ {
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-        include fastcgi_params;
-    }
-    location / {
-        try_files \$uri \$uri/ /index.php?\$args;
-    }
-    
-}
-server {
     listen       0.0.0.0:80;
     server_name  $your_domain;
     return 301 https://$your_domain\$request_uri;
 }
 
 server {
+    listen       127.0.0.1:37212 http2;
+    server_name  $your_domain;
     root /usr/share/nginx/html;
     index index.php index.html;
-    ssl_certificate /etc/nginx/ssl/fullchain.cer; 
-    ssl_certificate_key /etc/nginx/ssl/$your_domain.key;
-    ssl_stapling on;
-    ssl_stapling_verify on;
-    add_header Strict-Transport-Security "max-age=31536000";
-    access_log /var/log/nginx/hostscube.log combined;
     location ~ \.php$ {
         fastcgi_pass 127.0.0.1:9000;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;

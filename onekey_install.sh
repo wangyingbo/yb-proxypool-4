@@ -313,7 +313,8 @@ uninstall_pc(){
     red "============================================="
     red "你的pc数据将全部丢失！！你确定要卸载吗？"
     read -s -n1 -p "按回车键开始卸载，按ctrl+c取消"
-    yum remove -y nginx 
+    yum remove -y nginx
+    pkill proxypool
     rm -rf ~/proxypool
     rm -rf ~/config.yaml
     rm -rf ~/source.yaml

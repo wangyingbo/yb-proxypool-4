@@ -243,6 +243,7 @@ server {
     }
 }
 EOF
+    nginx -s reload
     install_xray
     install_pc
 }

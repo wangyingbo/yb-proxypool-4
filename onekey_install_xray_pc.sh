@@ -421,6 +421,7 @@ remove_xray(){
         apt-get -y autoremove && apt-get -y autoclean
         find / | grep nginx | sudo xargs rm -rf
     fi
+    pkill proxypool
     rm -rf /usr/local/share/xray/ /usr/local/etc/xray/
     rm -f /usr/local/bin/xray /usr/local/bin/v2ctl 
     rm -rf /etc/systemd/system/xray*

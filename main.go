@@ -5,7 +5,7 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/Sansui233/proxypool/api"
+	"github.com/Sansui2dd33/proxypool/api"
 	"github.com/Sansui233/proxypool/internal/app"
 	"github.com/Sansui233/proxypool/internal/cron"
 	"github.com/Sansui233/proxypool/internal/database"

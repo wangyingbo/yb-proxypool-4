@@ -5,12 +5,12 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/Sansui2dd33/proxypool/api"
-	"github.com/Sansui233/proxypool/internal/app"
-	"github.com/Sansui233/proxypool/internal/cron"
-	"github.com/Sansui233/proxypool/internal/database"
-	"github.com/Sansui233/proxypool/log"
-	"github.com/Sansui233/proxypool/pkg/proxy"
+	"github.com/lanhebe/proxypool/api"
+	"github.com/lanhebe/proxypool/internal/app"
+	"github.com/lanhebe/proxypool/internal/cron"
+	"github.com/lanhebe/proxypool/internal/database"
+	"github.com/lanhebe/proxypool/log"
+	"github.com/lanhebe/proxypool/pkg/proxy"
 )
 
 var configFilePath = ""

@@ -11,8 +11,8 @@
   <a href="https://goreportcard.com/report/github.com/Sansui233/proxypool">
     <img src="https://goreportcard.com/badge/github.com/Sansui233/proxypool?style=flat-square">
   </a>
-  <a href="https://github.com/Sansui233/proxypool/releases">
-    <img src="https://img.shields.io/github/release/Sansui233/proxypool/all.svg?style=flat-square">
+  <a href="https://github.com/lanhebe/proxypool/releases">
+    <img src="https://img.shields.io/github/release/lanhebe/proxypool/all.svg?style=flat-square">
   </a>
 </p>
 

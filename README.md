@@ -5,8 +5,8 @@
 <h5 align="center">自动抓取tg频道、订阅地址、公开互联网上的ss、ssr、vmess、trojan节点信息，聚合去重测试可用性后提供节点列表</h5>
 
 <p align="center">
-  <a href="https://github.com/Sansui233/proxypool/actions">
-    <img src="https://img.shields.io/github/workflow/status/Sansui233/proxypool/Go?style=flat-square" alt="Github Actions">
+  <a href="https://github.com/lanhebe/proxypool/actions">
+    <img src="https://img.shields.io/github/workflow/status/lanhebe/proxypool/Go?style=flat-square" alt="Github Actions">
   </a>
   <a href="https://goreportcard.com/report/github.com/Sansui233/proxypool">
     <img src="https://goreportcard.com/badge/github.com/Sansui233/proxypool?style=flat-square">
@@ -56,7 +56,7 @@ wget https://raw.githubusercontent.com/lanhebe/proxypool/master/onekey_install.s
 需要安装Golang 
 
 ```sh
-$ go get -u -v github.com/Sansui233/proxypool
+$ go get -u -v github.com/lanhebe/proxypool
 ```
 
 运行
@@ -71,12 +71,12 @@ make
 
 ### 下载预编译程序
 
-从这里下载预编译好的程序 [release](https://github.com/Sansui233/proxypool/releases)。
+从这里下载预编译好的程序 [release](https://github.com/lanhebe/proxypool/releases)。
 
 ### 使用docker
 
 ```sh
-docker pull docker.pkg.github.com/Sansui233/proxypool/proxypool:latest
+docker pull docker.pkg.github.com/lanhebe/proxypool/proxypool:latest
 ```
 
 ## 使用

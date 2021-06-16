@@ -186,11 +186,16 @@ EOF
 
 cat > /etc/nginx/conf.d/default.conf<<-EOF
 server {
-    listen 80 default_server;
-    return 404;  
-}
-
-server {
+    listen 80;
+    server_name $your_domain;
+    root /usr/share/nginx/html;
+    index index.php index.html;
+    access_log /var/log/nginx/hostscube.log combined;
+    location ~ \.php$ {
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
+    }
     location / {
        proxy_pass http://127.0.0.1:12580/;
     }

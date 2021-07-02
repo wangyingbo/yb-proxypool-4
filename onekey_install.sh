@@ -186,7 +186,7 @@ http {
 }
 EOF
 
-    curl https://get.acme.sh | sh
+    curl https://get.acme.sh | sh -s email=my@example.com
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
         --key-file   /etc/nginx/ssl/$your_domain.key \

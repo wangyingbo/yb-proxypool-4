@@ -2,7 +2,7 @@
 
 module github.com/daycat/proxypool
 
-go 1.15
+go 1.17
 
 require (
 	github.com/Dreamacro/clash v1.3.0
@@ -45,5 +45,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
 	gorm.io/driver/postgres v1.0.5
 	gorm.io/gorm v1.20.7
-	github.com/PuerkitoBio/goquery v1.8.0
+	github.com/PuerkitoBio/goquery v1.5.1
 )

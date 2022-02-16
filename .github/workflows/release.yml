@@ -8,34 +8,23 @@ on:
 jobs:
 
   build:
-    name: Build
+    name: Build and release
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
     steps:
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.14.x
 
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v2.3.4
+      - name: Check out
+        uses: actions/checkout@v2.4.0
 
-      - name: Cache go module
-        uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
+      - name: Get tag
+        uses: olegtarasov/get-tag@v2
+        id: tagName
 
-      - name: Get dependencies and run test
-        run: |
-          go test ./...
-
-      - name: gen go-bindata
-        if: startsWith(github.ref, 'refs/tags/')
-        run: |
-          go get -u github.com/go-bindata/go-bindata/...
-          go-bindata -o internal/bindata/geoip/geoip.go -pkg bingeoip  assets/GeoLite2-City.mmdb assets/flags.json
+      - name: Get time
+        uses: gerred/actions/current-time@master
+        id: current-time
 
       - name: Build (tun)
         uses: crazy-max/ghaction-xgo@v1.6.1
@@ -46,7 +35,7 @@ jobs:
           go_version: 1.17
           dest: dist
           prefix: proxypool
-          targets: linux/amd64,linux/386,linux/arm-5,linux/arm-7,linux/arm64,linux/mipsle,darwin-10.12/amd64,darwin-10.12/arm64,windows-6.0/amd64,windows-6.0/386
+          targets: linux/amd64,linux/386,linux/arm-5,linux/arm-7,linux/arm64,linux/mipsle,linux/s390x,darwin-10.12/amd64,darwin-10.12/arm64,windows-6.0/amd64,windows-6.0/386
           ldflags: -w -s -X main.appVersion=${{ env.GIT_TAG_NAME }} -X main.appCommit=${{ github.sha }} -X main.appDate=${{ env.TIME }}
           pkg: cmd
 

@@ -36,25 +36,33 @@ jobs:
           go get -u github.com/go-bindata/go-bindata/...
           go-bindata -o internal/bindata/geoip/geoip.go -pkg bingeoip  assets/GeoLite2-City.mmdb assets/flags.json
 
-      - name: Build
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Build (tun)
+        uses: crazy-max/ghaction-xgo@v1.6.1
         env:
-          NAME: proxypool
-          BINDIR: bin
-        run: make -j releases
+          TIME: "${{ steps.current-time.outputs.time }}"
+        with:
+          xgo_version: latest
+          go_version: 1.17
+          dest: dist
+          prefix: proxypool
+          targets: linux/amd64,linux/386,linux/arm-5,linux/arm-7,linux/arm64,linux/mipsle,darwin-10.12/amd64,darwin-10.12/arm64,windows-6.0/amd64,windows-6.0/386
+          ldflags: -w -s -X main.appVersion=${{ env.GIT_TAG_NAME }} -X main.appCommit=${{ github.sha }} -X main.appDate=${{ env.TIME }}
+          pkg: cmd
 
-      - name: Upload Release
+      - name: Upload
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: bin/*
-          draft: true
-          prerelease: true
+          files: |
+            ./dist/proxypool-linux-amd64
+            ./dist/proxypool-linux-386
+            ./dist/proxypool-linux-arm-5
+            ./dist/proxypool-linux-arm-7
+            ./dist/proxypool-linux-arm64
+            ./dist/proxypool-linux-mipsle
+            ./dist/proxypool-linux-s390x
+            ./dist/proxypool-darwin-10.12-amd64
+            ./dist/proxypool-darwin-10.12-arm64
+            ./dist/proxypool-windows-6.0-amd64.exe
+            ./dist/proxypool-windows-6.0-386.exe
 
-      - uses: actions/upload-artifact@v2.2.2
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          name: build
-          path: bin

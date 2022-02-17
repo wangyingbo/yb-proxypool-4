@@ -1,16 +1,16 @@
 package app
 
 import (
-	"github.com/lanhebe/proxypool/config"
-	"github.com/lanhebe/proxypool/log"
-	"github.com/lanhebe/proxypool/pkg/healthcheck"
+	"github.com/daycat/proxypool/config"
+	"github.com/daycat/proxypool/log"
+	"github.com/daycat/proxypool/pkg/healthcheck"
 	"sync"
 	"time"
 
-	"github.com/lanhebe/proxypool/internal/cache"
-	"github.com/lanhebe/proxypool/internal/database"
-	"github.com/lanhebe/proxypool/pkg/provider"
-	"github.com/lanhebe/proxypool/pkg/proxy"
+	"github.com/daycat/proxypool/internal/cache"
+	"github.com/daycat/proxypool/internal/database"
+	"github.com/daycat/proxypool/pkg/provider"
+	"github.com/daycat/proxypool/pkg/proxy"
 )
 
 var location, _ = time.LoadLocation("PRC")

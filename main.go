@@ -5,12 +5,12 @@ import (
 	_ "net/http/pprof"
 	"os"
 
-	"github.com/lanhebe/proxypool/api"
-	"github.com/lanhebe/proxypool/internal/app"
-	"github.com/lanhebe/proxypool/internal/cron"
-	"github.com/lanhebe/proxypool/internal/database"
-	"github.com/lanhebe/proxypool/log"
-	"github.com/lanhebe/proxypool/pkg/proxy"
+	"github.com/daycat/proxypool/api"
+	"github.com/daycat/proxypool/internal/app"
+	"github.com/daycat/proxypool/internal/cron"
+	"github.com/daycat/proxypool/internal/database"
+	"github.com/daycat/proxypool/log"
+	"github.com/daycat/proxypool/pkg/proxy"
 )
 
 var configFilePath = ""

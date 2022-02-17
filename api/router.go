@@ -1,8 +1,8 @@
 package api
 
 import (
-	binhtml "github.com/lanhebe/proxypool/internal/bindata/html"
-	"github.com/lanhebe/proxypool/log"
+	binhtml "github.com/daycat/proxypool/internal/bindata/html"
+	"github.com/daycat/proxypool/log"
 	"html/template"
 	"net/http"
 	"os"
@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/lanhebe/proxypool/config"
-	appcache "github.com/lanhebe/proxypool/internal/cache"
-	"github.com/lanhebe/proxypool/pkg/provider"
+	"github.com/daycat/proxypool/config"
+	appcache "github.com/daycat/proxypool/internal/cache"
+	"github.com/daycat/proxypool/pkg/provider"
 	"github.com/gin-contrib/cache"
 	"github.com/gin-contrib/cache/persistence"
 	"github.com/gin-gonic/gin"

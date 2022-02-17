@@ -1,14 +1,14 @@
 package cron
 
 import (
-	"github.com/lanhebe/proxypool/config"
-	"github.com/lanhebe/proxypool/internal/cache"
-	"github.com/lanhebe/proxypool/log"
-	"github.com/lanhebe/proxypool/pkg/healthcheck"
-	"github.com/lanhebe/proxypool/pkg/provider"
+	"github.com/daycat/proxypool/config"
+	"github.com/daycat/proxypool/internal/cache"
+	"github.com/daycat/proxypool/log"
+	"github.com/daycat/proxypool/pkg/healthcheck"
+	"github.com/daycat/proxypool/pkg/provider"
 	"runtime"
 
-	"github.com/lanhebe/proxypool/internal/app"
+	"github.com/daycat/proxypool/internal/app"
 	"github.com/jasonlvhit/gocron"
 )
 

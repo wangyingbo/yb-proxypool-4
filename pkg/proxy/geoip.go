@@ -8,7 +8,7 @@ import (
 	"net"
 	"os"
 
-	bingeoip "github.com/lanhebe/proxypool/internal/bindata/geoip"
+	bingeoip "github.com/daycat/proxypool/internal/bindata/geoip"
 	"github.com/oschwald/geoip2-golang"
 )
 

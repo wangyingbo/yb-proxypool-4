@@ -2,14 +2,14 @@ package app
 
 import (
 	"errors"
-	"github.com/lanhebe/proxypool/log"
+	"github.com/daycat/proxypool/log"
 
-	"github.com/lanhebe/proxypool/internal/cache"
+	"github.com/daycat/proxypool/internal/cache"
 
 	"github.com/ghodss/yaml"
 
-	"github.com/lanhebe/proxypool/config"
-	"github.com/lanhebe/proxypool/pkg/getter"
+	"github.com/daycat/proxypool/config"
+	"github.com/daycat/proxypool/pkg/getter"
 )
 
 var Getters = make([]getter.Getter, 0)

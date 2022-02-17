@@ -48,7 +48,7 @@ install_pc(){
     echo
     sleep 1
     yum -y install  wget
-    wget https://github.com/lanhebe/proxypool/releases/download/v0.6/proxypool-linux-amd64-v0.6.0.gz
+    wget https://github.com/daycat/proxypool/releases/download/v0.6/proxypool-linux-amd64-v0.6.0.gz
     gzip -d proxypool-linux-amd64-v0.6.0.gz
     mv proxypool-linux-amd64-v0.6.0 proxypool
     chmod 755 proxypool

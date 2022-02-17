@@ -2,7 +2,7 @@ package proxy
 
 import (
 	"fmt"
-	"github.com/lanhebe/proxypool/pkg/tool"
+	"github.com/daycat/proxypool/pkg/tool"
 	"testing"
 )
 

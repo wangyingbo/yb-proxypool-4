@@ -50,6 +50,7 @@ require (
 	github.com/Dreamacro/go-shadowsocks2 v0.1.7 // indirect
 	github.com/bradfitz/gomemcache v0.0.0-20180710155616-bc664df96737 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/go-bindata/go-bindata v3.1.2+incompatible // indirect
 	github.com/go-playground/locales v0.13.0 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect

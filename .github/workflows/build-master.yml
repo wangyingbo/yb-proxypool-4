@@ -51,7 +51,6 @@ jobs:
           go_version: 1.17
           dest: dist
           prefix: proxypool
-          targets: */*
           ldflags: -w -s -X main.appCommit=${{ github.sha }} -X main.appDate=${{ env.TIME }}
           pkg: /
 

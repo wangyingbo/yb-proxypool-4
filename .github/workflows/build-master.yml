@@ -20,6 +20,11 @@ jobs:
       - name: Check out
         uses: actions/checkout@v2.4.0
 
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
+
       - name: Get time
         uses: gerred/actions/current-time@master
         id: current-time
@@ -31,7 +36,7 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-            
+
       - name: Get dependencies and run test
         run: |
           go test ./...

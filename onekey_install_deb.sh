@@ -275,7 +275,7 @@ download_pc(){
     # source list file
     source-files:
       # use local file
-      - #config_path/source.yaml
+      - $config_path/source.yaml
       # use web file
       # - https://example.com/config/source.yaml
     # ======= 可选项，留空使用default值  =======

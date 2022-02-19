@@ -313,19 +313,21 @@ EOF
     [Install]
     WantedBy=multi-user.target
 EOF
+    systemctl start proxypool
 }
 
 
 
 uninstall_pc(){
     red "============================================="
-    red " 你的pc数据将全部丢失！！你确定要卸载吗？"
+    red " 你的proxypool数据将全部丢失！！你确定要卸载吗？"
     read -s -n1 -p "按回车键开始卸载，按ctrl+c取消"
     apt remove -y nginx
-    pkill proxypool
+    systemctl stop proxypool
     rm -rf ~/proxypool
     rm -rf ~/config.yaml
     rm -rf ~/source.yaml
+    rm -rf /etc/systemd/system/proxypool.service
     green "=========="
     green " 卸载完成 "
     green "=========="

@@ -14,19 +14,23 @@ yellow(){
 }
 
 check_domain(){
-    green "========================="
-    yellow "请输入绑定到本VPS的域名"
-    yellow "   安装时请关闭CDN"
-    green "========================="
+    green "================================="
+    green "  我们需要你的邮箱用于ssl证书申请"
+    yellow "  请输入你的邮箱："
+    green "================================="
+    read your_email
+    green "================================="
+    yellow " 请输入绑定到本VPS的域名"
+    green "================================="
     read your_domain
     real_addr=`ping ${your_domain} -c 1 | sed '1{s/[^(]*(//;s/).*//;q}'`
     local_addr=`curl ip.sb`
     if [ $real_addr == $local_addr ] ; then
-        green "============================="
-        green "域名解析正常，开始安装爬虫"
-        green "============================="
+        green "================================="
+        green "  域名解析正常，开始安装爬虫"
+        green "================================="
         sleep 1s
-        red "是否需要关闭防火墙? y/n "
+        yellow "是否需要关闭防火墙? （如果不确认请选择y）y/n "
         read firewall_choice
         if [ $firewall_choice == y ] ; then
           firewall_config
@@ -36,10 +40,10 @@ check_domain(){
         install_nginx
         config_ssl
     else
-        red "================================="
-        red "域名解析地址与本VPS IP地址不一致"
-        red "本次安装失败，请确保域名解析正常"
-        red "================================="
+        red "====================================="
+        red "    域名解析地址与本VPS IP地址不一致"
+        yellow "  如果你开启了CDN，请先关闭CDN重试"
+        red "====================================="
         exit 1
     fi
 }
@@ -64,8 +68,9 @@ install_socat(){
     echo
     echo
     green "==================="
-    green " Installing SoCat"
+    green "  1.安装 SoCat"
     green "==================="
+    sleep 1
     apt-get install -y socat
 }
 
@@ -73,7 +78,7 @@ install_nginx(){
     echo
     echo
     green "==============="
-    green "  2.安装nginx"
+    green "  2.安装 Nginx"
     green "==============="
     sleep 1
     apt-get install -y nginx
@@ -107,10 +112,21 @@ http {
     include /etc/nginx/conf.d/*.conf;
 }
 EOF
-
-    curl https://get.acme.sh | sh -s email=daycat@mail.io
+    green "==================="
+    green "  2.1 安装 ACME"
+    green "==================="
+    sleep 1
+    curl https://get.acme.sh | sh -s email=$your_email
     ~/.acme.sh/acme.sh  --set-default-ca --server letsencrypt
+    green "==================="
+    green "  2.2 申请 SSL 证书"
+    green "==================="
+    sleep 1
     ~/.acme.sh/acme.sh  --issue  -d $your_domain  --standalone
+    green "==================="
+    green "  2.1 安装 SSL 证书"
+    green "==================="
+    sleep 1
     ~/.acme.sh/acme.sh  --installcert  -d  $your_domain   \
         --key-file   /etc/nginx/ssl/$your_domain.key \
         --fullchain-file /etc/nginx/ssl/fullchain.cer
@@ -162,7 +178,7 @@ config_ssl(){
 
     echo
     green "===================="
-    green " 3.验证ssl证书"
+    green " 3. 校验 SSL 证书"
     green "===================="
     echo
     echo
@@ -179,14 +195,38 @@ config_ssl(){
     green " Nginx安装成功"
     green "===================="
     echo
-  
+    echo
+    echo
+    green "===================================================="
+    green " 你的ProxyPool 已成功安装！"
+    green " 请通过 https://$your_domain 访问 "
+    green " ProxyPool 的默认配置文件在以下路径："
+    green " $config_path"
+    green " 如果需要更换配置文件源至网页配置文件，请修改以下文件："
+    green " /etc/systemd/system/proxypool.service"
+    green " 可以使用systemctl控制 proxypool!"
+    green " 例如： systemctl restart proxypool"
+    echo
+    echo
+    echo "    那么，如果我做的不错的话，考虑给我买杯咖啡？:D"
+    echo "    谢谢各位的投喂！ 喵！"
+    echo "    BTC: bc1qlj06ehffq33defvh4z84fm3mgle44e799gfg5p"
+    echo "    USDT-TRC20：TBLAmCewbKw62vWLqWh1CthGC3TJbU9yPd"
+    echo "    Blog: https://daycat.space"
+    echo "    此外，非常感谢原作者以及所有fork作者！"
+    green " 原作者：https://github.com/zu1k"
+    green " fork: yourp112：https://github.com/yourp112"
+    green " fork: Sansui233：https://github.com/Sansui233"
+    green " fork: lanhebe：https://github.com/lanhebe"
+    green " fork: daycat: https://github.com/daycat"
+    green "===================================================="
 }
 
 
 download_pc(){
     echo
     green "==============="
-    green "  1.安装爬虫"
+    green "  0.下载爬虫"
     green "==============="
     sleep 1
     case $(uname -m) in
@@ -219,13 +259,15 @@ download_pc(){
         chmod +x proxypool
         ;;
       *)
-        echo Architecture not supported by this script. Please submit issue of PR on github.
+        red "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+        red "  此脚本不支持你使用的系统架构，请使用手动安装"
+        red "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         exit 1
         ;;
     esac
 
-    wget https://raw.githubusercontent.com/lanhebe/proxypool/master/config.yaml
-    wget https://raw.githubusercontent.com/lanhebe/proxypool/master/source.yaml
+    wget https://raw.githubusercontent.com/daycat/proxypool/master/config.yaml
+    wget https://raw.githubusercontent.com/daycat/proxypool/master/source.yaml
    
     cat > ./config.yaml <<-EOF
     domain: $your_domain
@@ -255,16 +297,29 @@ download_pc(){
     cf_email: ""
     cf_key: ""
 EOF
-   
-    nohup ./proxypool -c config.yaml >/dev/null 2>/dev/null &
-    
+    config_path=`pwd`
+    cat > /etc/systemd/system/proxypool.service<<-EOF
+    [Unit]
+    Description=A Proxypool written in GoLang to crawl websites for V2ray & trojan proxies
+    After=network.target
+    StartLimitIntervalSec=0
+    [Service]
+    Type=simple
+    Restart=always
+    RestartSec=1
+    User=root
+    ExecStart=/$config_path/proxypool -c config.yaml
+
+    [Install]
+    WantedBy=multi-user.target
+EOF
 }
 
 
 
 uninstall_pc(){
     red "============================================="
-    red "你的pc数据将全部丢失！！你确定要卸载吗？"
+    red " 你的pc数据将全部丢失！！你确定要卸载吗？"
     read -s -n1 -p "按回车键开始卸载，按ctrl+c取消"
     apt remove -y nginx
     pkill proxypool
@@ -272,7 +327,7 @@ uninstall_pc(){
     rm -rf ~/config.yaml
     rm -rf ~/source.yaml
     green "=========="
-    green " 卸载完成"
+    green " 卸载完成 "
     green "=========="
 }
 
@@ -284,10 +339,9 @@ start_menu(){
     green " Modified by dayCat for use with Debian based systems"
     green " This script is first published on:"
     green "     https://github.com/daycat/proxypool"
-    yellow " You are using a DEV version. Shit will not work!!!"
     green "====================================================="
     green "1. 一键安装免费节点爬虫"
-    red "2. 卸载爬虫"
+    green "2. 卸载爬虫"
     yellow "0. 退出脚本"
     echo
     read -p "请输入数字:" num

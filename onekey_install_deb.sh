@@ -297,6 +297,7 @@ download_pc(){
     cf_email: ""
     cf_key: ""
 EOF
+
     config_path=`pwd`
     cat > /etc/systemd/system/proxypool.service<<-EOF
     [Unit]
@@ -340,7 +341,7 @@ start_menu(){
     green " This script is first published on:"
     green "     https://github.com/daycat/proxypool"
     green "====================================================="
-    green "1. 一键安装免费节点爬虫"
+    green "1. 一键安装节点爬虫"
     green "2. 卸载爬虫"
     yellow "0. 退出脚本"
     echo

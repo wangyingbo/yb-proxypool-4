@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/daycat/proxypool/actions">
-    <img src="https://img.shields.io/github/workflow/status/daycat/proxypool/Go?style=flat-square" alt="Github Actions">
+    <img src="https://img.shields.io/github/workflow/status/daycat/proxypool/build-master?style=flat-square" alt="Github Actions">
   </a>
   <a href="https://goreportcard.com/report/github.com/daycat/proxypool">
     <img src="https://goreportcard.com/badge/github.com/daycat/proxypool?style=flat-square">

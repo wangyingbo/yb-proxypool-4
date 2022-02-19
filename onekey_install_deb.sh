@@ -275,7 +275,7 @@ download_pc(){
     # source list file
     source-files:
       # use local file
-      - ./source.yaml
+      - #config_path/source.yaml
       # use web file
       # - https://example.com/config/source.yaml
     # ======= 可选项，留空使用default值  =======
@@ -304,7 +304,6 @@ EOF
     Description=A Proxypool written in GoLang to crawl websites for V2ray & trojan proxies
     After=network.target
     StartLimitIntervalSec=10
-    StartBurstLimit=2
 
     [Service]
     Type=simple

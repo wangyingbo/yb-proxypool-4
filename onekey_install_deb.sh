@@ -313,6 +313,7 @@ EOF
     [Install]
     WantedBy=multi-user.target
 EOF
+    systemctl start proxypool
 }
 
 

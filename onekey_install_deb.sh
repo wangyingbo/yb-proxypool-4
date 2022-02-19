@@ -308,7 +308,7 @@ EOF
     Restart=always
     RestartSec=1
     User=root
-    ExecStart=/$config_path/proxypool -c config.yaml
+    ExecStart=$config_path/proxypool -c config.yaml
 
     [Install]
     WantedBy=multi-user.target

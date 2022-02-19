@@ -303,13 +303,16 @@ EOF
     [Unit]
     Description=A Proxypool written in GoLang to crawl websites for V2ray & trojan proxies
     After=network.target
-    StartLimitIntervalSec=0
+    StartLimitIntervalSec=10
+    StartBurstLimit=2
+
     [Service]
     Type=simple
     Restart=always
     RestartSec=1
     User=root
     ExecStart=$config_path/proxypool -c $config_path/config.yaml
+    Restart=on-failure
 
     [Install]
     WantedBy=multi-user.target

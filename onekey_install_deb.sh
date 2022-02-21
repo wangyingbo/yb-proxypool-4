@@ -14,6 +14,7 @@ yellow(){
 }
 
 check_domain(){
+    config_path=`pwd`
     green "================================="
     green "  我们需要你的邮箱用于ssl证书申请"
     yellow "  请输入你的邮箱："
@@ -268,7 +269,7 @@ download_pc(){
 
     wget https://raw.githubusercontent.com/daycat/proxypool/master/source.yaml
    
-    cat > $config_path/config.yaml <<-EOF
+    cat > ./config.yaml <<-EOF
     domain: $your_domain
     port:                 # default 12580
     # source list file
@@ -297,7 +298,6 @@ download_pc(){
     cf_key: ""
 EOF
 
-    config_path=`pwd`
     cat > /etc/systemd/system/proxypool.service<<-EOF
     [Unit]
     Description=A Proxypool written in GoLang to crawl websites for V2ray & trojan proxies

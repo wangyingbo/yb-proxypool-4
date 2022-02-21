@@ -266,10 +266,9 @@ download_pc(){
         ;;
     esac
 
-    wget https://raw.githubusercontent.com/daycat/proxypool/master/config.yaml
     wget https://raw.githubusercontent.com/daycat/proxypool/master/source.yaml
    
-    cat > ./config.yaml <<-EOF
+    cat > $config_path/config.yaml <<-EOF
     domain: $your_domain
     port:                 # default 12580
     # source list file

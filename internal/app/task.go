@@ -74,7 +74,7 @@ func CrawlGo() {
 
 	// 节点可用性检测，使用batchsize不能降低内存占用，只是为了看性能
 	log.Infoln("Now proceed proxy health check...")
-	b := 1000
+	b := 500
 	round := len(proxies) / b
 	okproxies := make(proxy.ProxyList, 0)
 	for i := 0; i < round; i++ {
@@ -87,7 +87,7 @@ func CrawlGo() {
 	log.Infoln("CrawlGo clash usable proxy count: %d", len(proxies))
 
 	// 重命名节点名称为类似US_01的格式，并按国家排序
-	proxies.NameSetCounrty().Sort().NameAddIndex()
+	proxies.NameSetCountry().Sort().NameAddIndex()
 	log.Infoln("Proxy rename DONE!")
 
 	// 可用节点存储
